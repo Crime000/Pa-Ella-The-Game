@@ -7,6 +7,7 @@ public class Jugador : MonoBehaviour
     public float movX, movZ;
     Rigidbody fisicas;
     public float velocidad;
+    public float velocidadRapida;
     public float velRotacion;
     public bool saltarSi = false;
     public float fuerzaSalto;
@@ -22,9 +23,18 @@ public class Jugador : MonoBehaviour
     {
         movX = Input.GetAxis("Horizontal");
         movZ = Input.GetAxis("Vertical");
+
         if (Input.GetButtonDown("Jump"))
         {
             saltarSi = true;
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            velocidad = velocidadRapida;
+        }
+        else
+        {
+            velocidad = 5;
         }
 
     }
@@ -44,7 +54,6 @@ public class Jugador : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (saltarSi && collision.gameObject.CompareTag("Terrain"))
         {
             fisicas.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);

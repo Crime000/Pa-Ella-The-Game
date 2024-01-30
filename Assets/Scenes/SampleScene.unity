@@ -529,6 +529,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7438700342374046475, guid: 835a25e26d37aa9489e61ea212e85c11, type: 3}
+      propertyPath: fuerzaSalto
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7438700342374046475, guid: 835a25e26d37aa9489e61ea212e85c11, type: 3}
+      propertyPath: velRotacion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7438700342374046475, guid: 835a25e26d37aa9489e61ea212e85c11, type: 3}
+      propertyPath: velocidadRapida
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7438700342374046486, guid: 835a25e26d37aa9489e61ea212e85c11, type: 3}
       propertyPath: m_Name
       value: Player
@@ -615,6 +627,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7558900837004356498, guid: 2635dac537a73724794ecc081c3785cb, type: 3}
+      propertyPath: Enemigo
+      value: 
+      objectReference: {fileID: 3275499902804043070, guid: 76bcb70ad58abac48bc7e6e2353ce80f, type: 3}
+    - target: {fileID: 7558900837004356498, guid: 2635dac537a73724794ecc081c3785cb, type: 3}
+      propertyPath: CooldownEnemigos
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558900837004356498, guid: 2635dac537a73724794ecc081c3785cb, type: 3}
+      propertyPath: Enemigos.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558900837004356498, guid: 2635dac537a73724794ecc081c3785cb, type: 3}
+      propertyPath: Enemigos.Array.data[0]
+      value: 
+      objectReference: {fileID: 3275499902804043070, guid: 76bcb70ad58abac48bc7e6e2353ce80f, type: 3}
+    - target: {fileID: 7558900837004356498, guid: 2635dac537a73724794ecc081c3785cb, type: 3}
+      propertyPath: Enemigos.Array.data[1]
+      value: 
+      objectReference: {fileID: 7439545908766945807, guid: 9c29299f558cddb4c910ed25153c450a, type: 3}
     - target: {fileID: 7558900837004356499, guid: 2635dac537a73724794ecc081c3785cb, type: 3}
       propertyPath: m_RootOrder
       value: 7

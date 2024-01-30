@@ -8,12 +8,25 @@ public class GameManager : MonoBehaviour
 
     public int MonedasTotales { get { return Monedas; } }
 
+    //-------------------------------------
     public int Monedas;
     public int EnemigosDerrotados;
+
+    //-------------------------------------
     public float tiempo;
     public float Oleadas = 0;
     public float CooldownOleadas = 25;
-    public bool EnOleada = false;
+    [SerializeField] public bool EnOleada = false;
+
+    //-------------------------------------
+    [SerializeField] public GameObject[] Enemigos;
+    [SerializeField] private float CooldownEnemigos = 5f;
+
+
+    public void Start()
+    {
+        StartCoroutine(SpawnDeEnemigos());
+    }
 
     public void Update()
     {
@@ -67,6 +80,21 @@ public class GameManager : MonoBehaviour
             EnOleada = false;
             Debug.Log("El banco se ha salvado");
         }
+    }
+
+    private IEnumerator SpawnDeEnemigos()
+    {
+        WaitForSeconds cooldownEnemigos = new WaitForSeconds(CooldownEnemigos);
+
+        while (EnOleada)
+        {
+            yield return cooldownEnemigos;
+            int aleatorio = Random.Range(0, Enemigos.Length);
+            GameObject enemigoASpawnear = Enemigos[aleatorio];
+            Debug.Log("Funciona");
+            Instantiate(enemigoASpawnear, new Vector3(1, 0.5f, 1), Quaternion.identity);
+        }
+        
     }
 
     public void MonedasPorEnemigo(int MonedasObtenidos)

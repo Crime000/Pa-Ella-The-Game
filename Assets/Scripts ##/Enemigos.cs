@@ -30,7 +30,7 @@ public class Enemigos : MonoBehaviour
     {
         if(atacando == false)
         {
-            // Persecución del Jugador.
+            // Persecución del Banco.
             transform.position = Vector3.MoveTowards(transform.position, objetivo.position, velocidad);
 
         }
@@ -44,7 +44,7 @@ public class Enemigos : MonoBehaviour
 
     private void AtacandoElBanco()
     {
-
+        
     }
 
 
@@ -56,7 +56,7 @@ public class Enemigos : MonoBehaviour
         }
 
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")) //luego debe ser el arma
         {
             vidas -= 1;
 
