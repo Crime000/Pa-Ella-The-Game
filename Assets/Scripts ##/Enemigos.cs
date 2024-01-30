@@ -20,7 +20,7 @@ public class Enemigos : MonoBehaviour
     void Start()
     {
         // Posición Enemigo.
-        transform.position = new Vector3(1,0.5f,1);  //Cambiar cuando tengamos los puntos de spawn
+        //transform.position = new Vector3(1,0.5f,1);  //Cambiar cuando tengamos los puntos de spawn
         // Velocidad Enemigo.
         velocidad = Random.Range(minVelocidad, maxVelocidad) * Time.deltaTime;
     }
@@ -60,13 +60,11 @@ public class Enemigos : MonoBehaviour
         {
             vidas -= 1;
 
-            if(vidas <= 0)
+            if(vidas < 1)
             {
                 gameManager.MonedasPorEnemigo(Monedas);
             
-           
                 Destroy(gameObject);
-
             } 
         }
     }

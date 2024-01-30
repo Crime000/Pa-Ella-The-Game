@@ -111,11 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8021ee16066854793ea52108ad073d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 7558900837004356498, guid: 2635dac537a73724794ecc081c3785cb, type: 3}
+  gameManager: {fileID: 3991164926645377822, guid: 2635dac537a73724794ecc081c3785cb, type: 3}
   objetivo: {fileID: 8248176348161011327, guid: 02bc1ad9d29261b48a4af700e9b9619f, type: 3}
   Monedas: 2
   minVelocidad: 1
   maxVelocidad: 3
+  atacando: 0
 --- !u!54 &-5817791347076912762
 Rigidbody:
   m_ObjectHideFlags: 0
