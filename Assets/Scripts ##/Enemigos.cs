@@ -1,71 +1,81 @@
+using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemigos : MonoBehaviour
 {   
-    
     public GameManager gameManager;
-    public Transform objetivo;
-    public int Monedas;
-    public float minVelocidad;
-    public float maxVelocidad;
-    float velocidad;
-    int vidas = 4;
-    int daño = 1;
+    private Banco bancoGO;
+    public Animator anim;
+    public string Banco = "Banco";
+    public int Monedas, dañoRecibido;
+    public float minVelocidad, maxVelocidad, velocidad;
+    private int vidas = 4, daño = 1, cooldownAtaque = 5;
     public bool atacando = false;
 
-
-    // Start is called before the first frame update
-    void Start()
+//-------------------------------------------------------------------------------------------------------------------------
+    public void Awake()
     {
-        // Posición Enemigo.
-        //transform.position = new Vector3(1,0.5f,1);  //Cambiar cuando tengamos los puntos de spawn
-        // Velocidad Enemigo.
-        velocidad = Random.Range(minVelocidad, maxVelocidad) * Time.deltaTime;
+        gameManager = FindObjectOfType<GameManager>();                             //--- Buscar el GameManager
+ 
+        velocidad = Random.Range(minVelocidad, maxVelocidad) * Time.deltaTime;     //--- Velocidad Enemigo.
     }
 
-    // Update is called once per frame
+//-------------------------------------------------------------------------------------------------------------------------
     void Update()
     {
-        if(atacando == false)
+        GameObject banco = GameObject.FindGameObjectWithTag(Banco);
+        float DistanciaAlBanco = Vector3.Distance(transform.position, banco.transform.position);
+        bancoGO = banco.GetComponent<Banco>();
+
+        if (atacando == false)
         {
-            // Persecución del Banco.
-            transform.position = Vector3.MoveTowards(transform.position, objetivo.position, velocidad);
+            transform.position = Vector3.MoveTowards(transform.position, banco.transform.position, velocidad);      //---Persecución del Banco.
 
-        }
-        else
-        {
-            AtacandoElBanco();
-        }
-        
-    }
-
-
-    private void AtacandoElBanco()
-    {
-        
-    }
-
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Banco"))
-        {
-            atacando = true;
-        }
-
-
-        if (other.gameObject.CompareTag("Player")) //luego debe ser el arma
-        {
-            vidas -= 1;
-
-            if(vidas < 1)
+            if (DistanciaAlBanco <= bancoGO.rango)
             {
-                gameManager.MonedasPorEnemigo(Monedas);
+                StartCoroutine(AtacandoElBanco());
+            }
+        }
+
+        if(DistanciaAlBanco > bancoGO.rango)
+        {
+            atacando = false;
+        }
+    }
+
+//-------------------------------------------------------------------------------------------------------------------------
+    private IEnumerator AtacandoElBanco()                                            //---Atacar el Banco
+    {
+        atacando = true;
+        for(int i = 0; i < 50; i++)
+        {
+            bancoGO.Vida -= daño;
             
-                Destroy(gameObject);
-            } 
+            yield return new WaitForSeconds(cooldownAtaque);
+        }
+        
+    }
+
+//-------------------------------------------------------------------------------------------------------------------------
+    private void OnTrigerEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Arma")                                          //---Recibir Daño
+        {
+            if(anim != null)
+            {
+                anim.Play("AnimaciónAtaque");
+            }
+
+            vidas -= dañoRecibido;
+        }
+
+        if (vidas < 1)
+        {
+            gameManager.MonedasPorEnemigo(Monedas);
+
+            Destroy(gameObject);
         }
     }
 }

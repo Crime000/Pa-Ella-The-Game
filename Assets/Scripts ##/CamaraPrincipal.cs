@@ -19,8 +19,5 @@ public class CamaraPrincipal : MonoBehaviour
     void Update()
     {
          transform.LookAt(player.transform.position);
-
-         Quaternion giroCamara = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * sensibilidad, Vector3.up);
-         offsetCamara = giroCamara * offsetCamara;
     }
 }

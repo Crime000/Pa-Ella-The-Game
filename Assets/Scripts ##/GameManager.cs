@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,18 +18,21 @@ public class GameManager : MonoBehaviour
     public float Oleadas = 0;
     public bool EnOleada = false;
 
-
+//-------------------------------------------------------------------------------------------------------------------------
     public void Start()
     {
         Monedas = 0;
         EnemigosDerrotados = 0;
     }
+
+//-------------------------------------------------------------------------------------------------------------------------
     public void Update()
     {
         tiempo += Time.deltaTime;
         ControlDeOleadas();
     }
 
+//-------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
         if (Instance == null)
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+//-------------------------------------------------------------------------------------------------------------------------
     public void ControlDeOleadas()
     {
         if (Oleadas == 0 && EnOleada == false)
@@ -73,10 +78,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+//-------------------------------------------------------------------------------------------------------------------------
     public void MonedasPorEnemigo(int MonedasObtenidos)
     {
         Monedas += MonedasObtenidos;
         EnemigosDerrotados += 1;
-        Debug.Log("Monedas y Enemigos = " + Monedas + EnemigosDerrotados);
+        Debug.Log("Monedas y Enemigos = " + Monedas + "  " + EnemigosDerrotados);
     }
 }

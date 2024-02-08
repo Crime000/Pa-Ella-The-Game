@@ -231,9 +231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9df3d707a8e202449fa2ccc39d093c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movX: 0
-  movZ: 0
-  velocidad: 5
-  velRotacion: 0
+  jugadorTransform: {fileID: 7438700342374046474}
+  velocidad: 240
+  velocidadRapida: 480
+  velRotacion: 100
+  fuerzaSalto: 10
+  PuedeSaltar: 0
+  EnSuelo: 0
   saltarSi: 0
-  fuerzaSalto: 1
