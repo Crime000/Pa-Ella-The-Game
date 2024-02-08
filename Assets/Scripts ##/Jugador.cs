@@ -8,7 +8,8 @@ public class Jugador : MonoBehaviour
     Rigidbody fisicas;
     public Transform jugadorTransform;
     public GameObject prefabCirculo;
-    public string Banco = "Banco", Enemigo = "Enemy";
+    public string Banco = "Banco";
+    public string Enemigo = "Enemy";
     public float velocidadBoost, velocidadNormal, velocidadActual, velocidadRapida, velRotacion, fuerzaSalto, vida, vidaInicial = 25, radioDelCirculo = 5f;
     public int mana, manaInicial = 3, cooldownBoost = 5;
     public bool PuedeSaltar = false, EnSuelo = false, saltarSi = false;

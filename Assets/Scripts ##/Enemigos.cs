@@ -1,4 +1,5 @@
 using OpenCover.Framework.Model;
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class Enemigos : MonoBehaviour
         GameObject banco = GameObject.FindGameObjectWithTag(Banco);
         float DistanciaAlBanco = Vector3.Distance(transform.position, banco.transform.position);
         bancoGO = banco.GetComponent<Banco>();
+        transform.LookAt(bancoGO.transform);
 
         if (atacando == false)
         {
@@ -52,22 +54,17 @@ public class Enemigos : MonoBehaviour
         for(int i = 0; i < 50; i++)
         {
             bancoGO.Vida -= daño;
-            
+            i++;
             yield return new WaitForSeconds(cooldownAtaque);
         }
-        
     }
 
-//-------------------------------------------------------------------------------------------------------------------------
-    private void OnTrigerEnter(Collision other)
+    //-------------------------------------------------------------------------------------------------------------------------
+    public void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Arma")                                          //---Recibir Daño
+        if (collision.gameObject.tag == "Player")                                          //---Recibir Daño
         {
-            if(anim != null)
-            {
-                anim.Play("AnimaciónAtaque");
-            }
-
+            Debug.Log("Golpe");
             vidas -= dañoRecibido;
         }
 
